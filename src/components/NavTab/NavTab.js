@@ -1,4 +1,3 @@
-//компонент с навигацией по странице «О проекте»
 import { Link } from 'react-router-dom';
 import './NavTab.css';
 
