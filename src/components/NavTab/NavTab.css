@@ -25,6 +25,7 @@
 
 .nav-page__link:hover {
   opacity: .7;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 767px) {
