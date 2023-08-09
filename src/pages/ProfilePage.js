@@ -1,11 +1,11 @@
 import Header from '../components/Header/Header';
 import Profile from '../components/Profile/Profile';
 
-function ProfilePage({ isLoggedIn }) {
+function ProfilePage({ isLoggedIn, setIsLoggedIn }) {
   return (
     <>
       <Header isLoggedIn={isLoggedIn} />
-      <Profile />
+      <Profile setIsLoggedIn={setIsLoggedIn} />
     </>
   );
 }
