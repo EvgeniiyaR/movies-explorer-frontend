@@ -17,11 +17,11 @@
   list-style-type: none;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 19px;
 }
 
 .portfolio__item {
-  padding: 0 0 19px;
+  padding: 0 0 10px;
   border-bottom: 1px solid #E8E8E8;
 }
 
@@ -88,6 +88,10 @@
 
   .portfolio__list {
     padding: 40px 0 70px;
+  }
+
+  .portfolio__item {
+    padding: 0 0 20px;
   }
 
   .portfolio__name {

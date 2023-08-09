@@ -5,7 +5,7 @@
 
 .footer__title {
   margin: 0;
-  padding: 79px 0 20px;
+  padding: 71px 0 20px;
   color: #A0A0A0;
   border-bottom: 1px solid #E8E8E8;
   font-size: 13px;
@@ -79,7 +79,7 @@
 
   .footer__link-list {
     flex-direction: column;
-    gap: 12px;
+    gap: 6px;
     align-items: center;
   }
 

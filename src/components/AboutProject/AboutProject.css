@@ -17,7 +17,7 @@
   padding: 70px 0 0 0;
   margin: 0;
   display: flex;
-  gap: 40px;
+  gap: 53px;
 }
 
 .about-project__item {
@@ -107,6 +107,10 @@
     padding: 93px 0 90px;
   }
 
+  .about-project__item-progress {
+    gap: 10px;
+  }
+
   .about-project__about-progress {
     width: calc(140px + (228 - 140) * (100vw - 768px) / (1279 - 768));
   }
@@ -123,6 +127,7 @@
 
   .about-project__title {
     font-size: 18px;
+    padding: 69px 0 26px;
   }
 
   .about-project__list {
