@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, Route, Routes, useNavigate, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Button from '../Button/Button';
 
 const Navigation = () => {
@@ -7,7 +7,6 @@ const Navigation = () => {
 
   const setActive = ({ isActive }) => isActive ? "header__link header__link_type_auth header__link_active" : "header__link header__link_type_auth";
   const setProfile = ({ isActive }) => isActive ? "header__link header__link_type_auth header__link_type_profile header__link_active" : "header__link header__link_type_auth header__link_type_profile";
-  const navigate = useNavigate();
 
   const handleOpenBurger = () => {
     setIsOpenBurger(true);
