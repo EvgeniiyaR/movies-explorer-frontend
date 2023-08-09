@@ -1,6 +1,7 @@
 .footer {
-  max-width: 1140px;
+  width: 1140px;
   margin: 0 auto;
+  margin-top: auto;
 }
 
 .footer__title {
@@ -51,13 +52,13 @@
 
 @media screen and (max-width: 1279px) {
   .footer {
-    max-width: calc(708px + (1140 - 708) * (100vw - 768px) / (1279 - 768));
+    width: calc(708px + (1140 - 708) * (100vw - 768px) / (1279 - 768));
   }
 }
 
 @media screen and (max-width: 767px) {
   .footer {
-    max-width: calc(300px + (708 - 300) * (100vw - 320px) / (767 - 320));
+    width: calc(300px + (708 - 300) * (100vw - 320px) / (767 - 320));
   }
 
   .footer__title {
