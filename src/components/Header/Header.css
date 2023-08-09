@@ -120,11 +120,11 @@
   border: none;
   background-color: transparent;
   transition: opacity .3s;
-  width: 44px;
-  height: 44px;
+  width: 39px;
+  height: 38px;
   background-image: url(../../images/icon-burger.svg);
   background-repeat: no-repeat;
-  background-size: 44px 44px;
+  background-size: 39px 38px;
   background-position: center;
 }
 
@@ -215,12 +215,6 @@
 
   .header__link_type_login {
     padding: calc(5px + (8 - 5) * (100vw - 320px) / (767 - 320)) calc(12px + (20 - 12) * (100vw - 320px) / (767 - 320));
-  }
-
-  .header__burger {
-    width: 40px;
-    height: 43px;
-    background-size: 40px 43px;
   }
 
   .header__burger-exit {
