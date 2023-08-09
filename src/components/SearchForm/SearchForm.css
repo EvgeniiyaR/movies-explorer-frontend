@@ -1,7 +1,7 @@
 .search {
   box-sizing: border-box;
   padding: 70px 0;
-  max-width: 1140px;
+  width: 1140px;
   margin: 0 auto;
   border-bottom: 1px solid #E8E8E8;
 }
@@ -82,7 +82,7 @@
 
 @media screen and (max-width: 1279px) {
   .search {
-    max-width: 708px;
+    width: 708px;
     padding: 70px 0 108px;
   }
 
@@ -101,7 +101,7 @@
 
 @media screen and (max-width: 767px) {
   .search {
-    max-width: calc(300px + (708 - 300) * (100vw - 320px) / (767 - 320));
+    width: calc(300px + (708 - 300) * (100vw - 320px) / (767 - 320));
     padding: 75px 0 44px;
   }
 
