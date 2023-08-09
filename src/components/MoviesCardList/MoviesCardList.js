@@ -47,7 +47,6 @@ const MoviesCardList = () => {
             <MoviesCard image={coverSix} title="Книготорговцы" time="1ч 17м" isSave={true} />
             <MoviesCard image={coverTen} title="Соберись перед прыжком" time="1ч 17м" isSave={true} />
           </ul>
-          <div className="movies__container-saved"></div>
         </section>
       }
     </>

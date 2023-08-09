@@ -36,10 +36,6 @@
   opacity: .8;
 }
 
-.movies__container-saved {
-  min-height: 83px;
-}
-
 @media screen and (max-width: 1279px) {
   .movies {
     gap: 61px;
@@ -49,10 +45,6 @@
     max-width: 708px;
     grid-template-columns: repeat(auto-fill, 339px);
     row-gap: 45px;
-  }
-
-  .movies__container-saved {
-    min-height: 38px;
   }
 }
 
