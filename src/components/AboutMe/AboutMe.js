@@ -10,7 +10,8 @@ const AboutMe = () => {
         <div className="about-me__info">
           <p className="about-me__name">Евгения</p>
           <p className="about-me__about">Фронтенд-разработчик</p>
-          <p className="about-me__description">Мир веб-разработки привлекает меня своей творческой составляющей и возможностью создавать удивительные пользовательские интерфейсы. Я хочу применить свой опыт и умения, чтобы создавать динамичные и интуитивно понятные веб-приложения.</p>
+          <p className="about-me__description">Я родился и живу в Саратове, закончил факультет экономики СГУ. У меня есть жена 
+и дочь. Я люблю слушать музыку, а ещё увлекаюсь бегом. Недавно начал кодить. С 2015 года работал в компании «СКБ Контур». После того, как прошёл курс по веб-разработке, начал заниматься фриланс-заказами и ушёл с постоянной работы.</p>
         <Link className="about-me__link" to="https://github.com/EvgeniiyaR" target="_blank" rel="noreferrer">Github</Link>
       </div>
       <img className="about-me__photo" src={photo} alt="student"></img>
