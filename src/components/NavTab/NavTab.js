@@ -3,7 +3,7 @@ import './NavTab.css';
 
 const NavTab = () => {
   return (
-    <section className="nav-page" aria-label="navigation inter page">
+    <section className="nav-page" aria-label="навигация по странице">
       <nav>
         <ul className="nav-page__list">
           <li><Link className="nav-page__link" to="about-project" smooth={true}>О проекте</Link></li>
