@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Profile.css';
 import Form from '../Form/Form';
@@ -5,9 +6,20 @@ import Input from '../Input/Input';
 import Button from '../Button/Button';
 
 const Profile = ({ setIsLoggedIn }) => {
+  const [isEdit, setIsEdit] = useState(false);
   const navigate = useNavigate();
-  const handleSubmitEdit = () => {};
-  const handleSubmitLogout = () => {
+
+  const handleSubmitEdit = (e) => {
+    e.preventDefault();
+    setIsEdit(true);
+  };
+
+  const handleSubmitSave = (e) => {
+    e.preventDefault();
+    setIsEdit(false);
+  };
+
+  const handleLogout = () => {
     setIsLoggedIn(false);
     navigate('/', {replace: true});
   };
@@ -15,7 +27,7 @@ const Profile = ({ setIsLoggedIn }) => {
   return (
     <section className="profile">
       <h1 className="profile__welcome">Привет, Евгения!</h1>
-      <Form className="profile__form" name="profile" onSubmit={handleSubmitEdit}>
+      <Form className="profile__form" name="profile" onSubmit={isEdit ? handleSubmitSave : handleSubmitEdit}>
         <div className="profile__container-inputs">
           <Input
             classNameInput="profile__input"
@@ -24,7 +36,8 @@ const Profile = ({ setIsLoggedIn }) => {
             name="profile-name"
             placeholder="Имя"
             label="Имя"
-            value="Евгения" />
+            value="Евгения"
+            disabled={!isEdit && "disabled"} />
           <Input
             classNameInput="profile__input"
             classNameLabel="profile__label profile__label_type_email"
@@ -32,11 +45,20 @@ const Profile = ({ setIsLoggedIn }) => {
             name="profile-email"
             placeholder="E-mail"
             label="E-mail"
-            value="pochta@yandex.ru" />
+            value="pochta@yandex.ru"
+            disabled={!isEdit && "disabled"} />
         </div>
         <div className="profile__container-btns">
-          <Button className="profile__button profile__button_type_edit" type="submit" text="Редактировать" />
-          <Button className="profile__button profile__button_type_logout" type="button" text="Выйти из аккаунта" onClick={handleSubmitLogout}/>
+          {isEdit ?
+            <>
+              <Button className="profile__button profile__button_type_save" type="submit" text="Сохранить" />
+            </>
+            :
+            <>
+              <Button className="profile__button profile__button_type_edit" type="submit" text="Редактировать" />
+              <Button className="profile__button profile__button_type_logout" type="button" text="Выйти из аккаунта" onClick={handleLogout} />
+            </>
+          }
         </div>
       </Form>
     </section>

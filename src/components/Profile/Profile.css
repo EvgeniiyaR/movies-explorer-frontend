@@ -40,6 +40,11 @@
   text-align: right;
 }
 
+.profile__input:disabled {
+  background-color: transparent;
+  color: #000;
+}
+
 .profile__label {
   width: 410px;
   display: flex;
@@ -77,6 +82,18 @@
 .profile__button:hover {
   cursor: pointer;
   opacity: .7;
+}
+
+.profile__button_type_save {
+  box-sizing: border-box;
+  width: 410px;
+  height: 52px;
+  border-radius: 3px;
+  background-color: #000;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: normal;
+  color: #FFF;
 }
 
 .profile__button_type_logout {
@@ -124,5 +141,9 @@
 
   .profile__button {
     font-size: 12px;
+  }
+
+  .profile__button_type_save {
+    width: calc(260px + (410 - 260) * (100vw - 320px) / (767 - 320));
   }
 }
