@@ -6,6 +6,7 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
 const SearchForm = () => {
   const handleSubmitSearch = () => {}
+  const handleChangeSearch = () => {}
 
   return (
     <section className="search" aria-label="поиск фильмов">
@@ -19,7 +20,8 @@ const SearchForm = () => {
               type="search"
               name="search-input"
               placeholder="Фильм"
-              required="required" />
+              required="required"
+              onChange={handleChangeSearch} />
             <Button className="search__button" type="submit" text="Найти" />
           </div>
           <div className="search__checkbox-filter">
