@@ -3,6 +3,7 @@ import Input from '../Input/Input';
 
 const Register = () => {
   const handleRegister = () => {};
+  const handleChange = () => {};
 
   return (
     <AuthForm
@@ -23,8 +24,33 @@ const Register = () => {
         required="required"
         max="30"
         min="2"
-        value="Евгения">
-        <span class="auth-form__input-error"></span>
+        defaultValue="Евгения"
+        onChange={handleChange}>
+        <span className="auth-form__input-error"></span>
+      </Input>
+      <Input
+        classNameInput="auth-form__input auth-form__input_type_error"
+        classNameLabel="auth-form__label"
+        type="email"
+        name="auth-email"
+        placeholder="E-mail"
+        required="required"
+        label="E-mail"
+        defaultValue="pochta@yandex.ru"
+        onChange={handleChange}>
+        <span className="auth-form__input-error">Что-то пошло не так...</span>
+      </Input>
+      <Input
+        classNameInput="auth-form__input auth-form__input_type_error"
+        classNameLabel="auth-form__label"
+        type="password"
+        name="auth-password"
+        placeholder="Пароль"
+        required="required"
+        label="Пароль"
+        defaultValue="123456"
+        onChange={handleChange}>
+        <span className="auth-form__input-error">Что-то пошло не так...</span>
       </Input>
     </AuthForm>
   )
