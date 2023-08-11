@@ -8,16 +8,22 @@ import LoginPage from '../../pages/LoginPage';
 import NotFoundPage from '../../pages/NotFoundPage';
 import SavedMoviesPage from '../../pages/SavedMoviesPage';
 import ProfilePage from '../../pages/ProfilePage';
+import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import { ProtectedRouteElementForAuthorizedUser, ProtectedRouteElementForUnauthorizedUser } from '../ProtectedRoutes/ProtectedRoutes';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isStatusPopupOpen, setIsStatusPopupOpen] = useState(false);
+
+  const closeStatusPopup = () => {
+    setIsStatusPopupOpen(false);
+  };
 
   return (
     <div className="body">
       <div className="page">
         <Routes>
-          <Route path="/" element={<ProtectedRouteElementForAuthorizedUser isLoggedIn={isLoggedIn} element={<MainPage />} />}/>
+          <Route path="/" element={<MainPage isLoggedIn={isLoggedIn} />} />
           <Route path="/movies" element={<ProtectedRouteElementForUnauthorizedUser isLoggedIn={isLoggedIn} element={<MoviesPage isLoggedIn={isLoggedIn} />} />} />
           <Route path="/saved-movies" element={<ProtectedRouteElementForUnauthorizedUser isLoggedIn={isLoggedIn} element={<SavedMoviesPage isLoggedIn={isLoggedIn} />} />} />
           <Route path="/profile" element={<ProtectedRouteElementForUnauthorizedUser isLoggedIn={isLoggedIn} element={<ProfilePage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />} />
@@ -26,6 +32,7 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>
+      <InfoTooltip isOpen={isStatusPopupOpen} onClose={closeStatusPopup} isStatus={false} status="Вы ввели неправильный логин или пароль." />
     </div>
   );
 }
