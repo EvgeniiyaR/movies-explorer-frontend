@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import './Profile.css';
 import Form from '../Form/Form';
 import Input from '../Input/Input';
@@ -7,7 +6,6 @@ import Button from '../Button/Button';
 
 const Profile = ({ setIsLoggedIn }) => {
   const [isEdit, setIsEdit] = useState(false);
-  const navigate = useNavigate();
 
   const handleSubmitEdit = (e) => {
     e.preventDefault();
@@ -21,37 +19,43 @@ const Profile = ({ setIsLoggedIn }) => {
 
   const handleLogout = () => {
     setIsLoggedIn(false);
-    navigate('/', {replace: true});
   };
+
+  const handleChange = () => {};
 
   return (
     <section className="profile">
       <h1 className="profile__welcome">Привет, Евгения!</h1>
-      <Form className="profile__form" name="profile" onSubmit={isEdit ? handleSubmitSave : handleSubmitEdit}>
+      <Form className={`profile__form ${isEdit ? "profile__form_type_save" : ""}`} name="profile" onSubmit={isEdit ? handleSubmitSave : handleSubmitEdit}>
         <div className="profile__container-inputs">
           <Input
             classNameInput="profile__input"
             classNameLabel="profile__label profile__label_type_name"
             type="text"
-            name="profile-name"
+            name="name"
             placeholder="Имя"
             label="Имя"
-            value="Евгения"
-            disabled={!isEdit && "disabled"} />
+            defaultValue="Евгения"
+            disabled={!isEdit && "disabled"}
+            onChange={handleChange}
+            min="2"
+            max="30" />
           <Input
             classNameInput="profile__input"
             classNameLabel="profile__label profile__label_type_email"
             type="email"
-            name="profile-email"
+            name="email"
             placeholder="E-mail"
             label="E-mail"
-            value="pochta@yandex.ru"
-            disabled={!isEdit && "disabled"} />
+            defaultValue="pochta@yandex.ru"
+            disabled={!isEdit && "disabled"}
+            onChange={handleChange} />
         </div>
-        <div className="profile__container-btns">
+        <div className={`profile__container-btns ${isEdit ? "profile__container-btns_type_save" : ""}`}>
           {isEdit ?
             <>
-              <Button className="profile__button profile__button_type_save" type="submit" text="Сохранить" />
+              <p className="profile__error"></p>
+              <Button className="profile__button profile__button_type_save" type="submit" text="Сохранить" disabled={false} />
             </>
             :
             <>
