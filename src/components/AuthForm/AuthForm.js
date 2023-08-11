@@ -6,6 +6,8 @@ import Input from '../Input/Input';
 import logo from '../../images/logo.svg';
 
 const AuthForm = ({ title, name, onSubmit, children, textButton, textLink, textParagraph, path, isLoginForm }) => {
+  const handleChange = () => {};
+
   return (
     <section className="auth-form">
       <Link className="auth-form__link auth-form__link_type_logo" to="/"><img className="auth-form__logo" src={logo} alt="logo"></img></Link>
@@ -20,8 +22,9 @@ const AuthForm = ({ title, name, onSubmit, children, textButton, textLink, textP
           placeholder="E-mail"
           required="required"
           label="E-mail"
-          value="pochta@yandex.ru">
-          <span class="auth-form__input-error">Что-то пошло не так...</span>
+          defaultValue="pochta@yandex.ru"
+          onChange={handleChange}>
+          <span className="auth-form__input-error">Что-то пошло не так...</span>
         </Input>
         <Input
           classNameInput="auth-form__input auth-form__input_type_error"
@@ -31,10 +34,11 @@ const AuthForm = ({ title, name, onSubmit, children, textButton, textLink, textP
           placeholder="Пароль"
           required="required"
           label="Пароль"
-          value="123456">
-          <span class="auth-form__input-error">Что-то пошло не так...</span>
+          defaultValue="123456"
+          onChange={handleChange}>
+          <span className="auth-form__input-error">Что-то пошло не так...</span>
         </Input>
-        <div className={`auth-form__container ${isLoginForm && "auth-form__container_type_login"}`}>
+        <div className={`auth-form__container ${isLoginForm ? "auth-form__container_type_login" : ""}`}>
           <Button className="auth-form__button" type="submit" text={textButton} />
           <p className="auth-form__text">{textParagraph} <Link className="auth-form__link" to={path}>{textLink}</Link></p>
         </div>
