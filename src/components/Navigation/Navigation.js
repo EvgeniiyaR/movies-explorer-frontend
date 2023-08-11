@@ -19,7 +19,7 @@ const Navigation = () => {
   return (
     <>
       <Button className="header__burger" type="button" onClick={handleOpenBurger} />
-      <nav className={`header__nav-mobile ${isOpenBurger && "header__nav-mobile_active"}`}>
+      <nav className={`header__nav-mobile ${isOpenBurger ? "header__nav-mobile_active" : ""}`}>
         <div className="header__container-mobile">
           <Button className="header__burger-exit" type="button" onClick={handleCloseBurger} />
           <ul className="header__list-mobile">

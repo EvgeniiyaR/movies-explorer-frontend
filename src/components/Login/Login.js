@@ -1,11 +1,8 @@
-import { useNavigate } from 'react-router-dom';
 import AuthForm from '../AuthForm/AuthForm';
 
 const Login = ({ setIsLoggedIn }) => {
-  const navigate = useNavigate();
   const handleLogin = () => {
     setIsLoggedIn(true);
-    navigate('/movies', {replace: true});
   };
 
   return (
