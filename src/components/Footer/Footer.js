@@ -7,10 +7,12 @@ const Footer = () => {
       <p className="footer__title">Учебный проект Яндекс.Практикум х BeatFilm.</p>
       <ul className="footer__list">
         <li className="footer__year">© 2020</li>
-        <ul className="footer__link-list">
-          <li><Link className="footer__link" to="https://practicum.yandex.ru/" target="_blank" rel="noreferrer">Яндекс.Практикум</Link></li>
-          <li><Link className="footer__link" to="https://github.com/EvgeniiyaR" target="_blank" rel="noreferrer">Github</Link></li>
-        </ul>
+        <li>
+          <ul className="footer__link-list">
+            <li><Link className="footer__link" to="https://practicum.yandex.ru/" target="_blank" rel="noreferrer">Яндекс.Практикум</Link></li>
+            <li><Link className="footer__link" to="https://github.com/EvgeniiyaR" target="_blank" rel="noreferrer">Github</Link></li>
+          </ul>
+        </li>
       </ul>
     </footer>
   )
