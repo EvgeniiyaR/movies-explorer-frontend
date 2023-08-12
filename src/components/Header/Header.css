@@ -54,10 +54,6 @@
   opacity: .7;
 }
 
-.header__link_type_logo:hover {
-  opacity: 1;
-}
-
 .header__link_type_login {
   padding: 8px 20px;
   background-color: #000;

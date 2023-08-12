@@ -112,10 +112,6 @@
   opacity: .7;
 }
 
-.auth-form__link_type_logo:hover {
-  opacity: 1;
-}
-
 @media screen and (max-width: 1279px) {
   .auth-form {
     min-height: calc(100vh - 464px);
@@ -145,10 +141,18 @@
   }
 
   .auth-form__container {
-    padding-top: calc(100vh - 654px);
+    padding-top: calc(100vh - 654px - 127px);
+  }
+
+  .auth-form__button {
+    margin-top: 127px;
   }
 
   .auth-form__container_type_login {
-    padding-top: calc(100vh - 556px);
+    padding-top: calc(100vh - 556px - 225px);
+  }
+
+  .auth-form__button_type_login {
+    margin-top: 225px;
   }
 }
