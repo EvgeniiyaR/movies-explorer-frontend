@@ -20,7 +20,7 @@ const Login = ({ setIsLoggedIn }) => {
       path="/signup"
       isLoginForm={true}>
       <Input
-        classNameInput="auth-form__input auth-form__input_type_error"
+        classNameInput="auth-form__input"
         classNameLabel="auth-form__label"
         type="email"
         name="auth-email"
@@ -29,10 +29,10 @@ const Login = ({ setIsLoggedIn }) => {
         label="E-mail"
         defaultValue="pochta@yandex.ru"
         onChange={handleChange}>
-        <span className="auth-form__input-error">Что-то пошло не так...</span>
+        <span className="auth-form__input-error"></span>
       </Input>
       <Input
-        classNameInput="auth-form__input auth-form__input_type_error"
+        classNameInput="auth-form__input"
         classNameLabel="auth-form__label"
         type="password"
         name="auth-password"
@@ -41,7 +41,7 @@ const Login = ({ setIsLoggedIn }) => {
         label="Пароль"
         defaultValue="123456"
         onChange={handleChange}>
-        <span className="auth-form__input-error">Что-то пошло не так...</span>
+        <span className="auth-form__input-error"></span>
       </Input>
     </AuthForm>
   )

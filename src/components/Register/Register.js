@@ -22,14 +22,14 @@ const Register = () => {
         placeholder="Имя"
         label="Имя"
         required="required"
-        max="30"
-        min="2"
+        maxlength="30"
+        minlength="2"
         defaultValue="Евгения"
         onChange={handleChange}>
         <span className="auth-form__input-error"></span>
       </Input>
       <Input
-        classNameInput="auth-form__input auth-form__input_type_error"
+        classNameInput="auth-form__input"
         classNameLabel="auth-form__label"
         type="email"
         name="auth-email"
@@ -38,7 +38,7 @@ const Register = () => {
         label="E-mail"
         defaultValue="pochta@yandex.ru"
         onChange={handleChange}>
-        <span className="auth-form__input-error">Что-то пошло не так...</span>
+        <span className="auth-form__input-error"></span>
       </Input>
       <Input
         classNameInput="auth-form__input auth-form__input_type_error"
