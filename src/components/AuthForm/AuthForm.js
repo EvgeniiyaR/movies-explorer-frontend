@@ -12,7 +12,7 @@ const AuthForm = ({ title, name, onSubmit, children, textButton, textLink, textP
       <Form className="auth-form__form" onSubmit={onSubmit} name={name}>
         {children}
         <div className={`auth-form__container ${isLoginForm ? "auth-form__container_type_login" : ""}`}>
-          <Button className="auth-form__button" type="submit" text={textButton} />
+          <Button className={`auth-form__button ${isLoginForm ? "auth-form__button_type_login" : ""}`} type="submit" text={textButton} />
           <p className="auth-form__text">{textParagraph} <Link className="auth-form__link" to={path}>{textLink}</Link></p>
         </div>
       </Form>
