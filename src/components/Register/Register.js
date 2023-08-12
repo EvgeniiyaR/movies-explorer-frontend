@@ -22,8 +22,8 @@ const Register = () => {
         placeholder="Имя"
         label="Имя"
         required="required"
-        maxlength="30"
-        minlength="2"
+        maxLength="30"
+        minLength="2"
         defaultValue="Евгения"
         onChange={handleChange}>
         <span className="auth-form__input-error"></span>
