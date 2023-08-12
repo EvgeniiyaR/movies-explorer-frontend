@@ -13,51 +13,17 @@
 
 /* focus, active styles */
 
-.header__link:focus,
-.nav-page__link:focus,
-.about-me__link:focus,
-.portfolio__link:focus,
-.footer__link:focus,
-.auth-form__link:focus,
 .auth-form__input:focus,
-.auth-form__button:focus,
-.auth-form__link:focus,
 .search__input:focus,
-.search__button:focus,
-.search__label-switch:focus,
-.movies__button-save:focus,
-.movies__button:focus,
-.profile__button:focus,
-.profile__input:focus,
-.header__burger:focus,
-.header__burger-exit:focus,
-.movies__link:focus,
-.popup__exit-button:focus {
-  outline: 2px solid #9f73e8;
-  box-shadow: 0 0 10px #9f73e8;
+.profile__input:focus {
+  outline: 2px solid #F3C1F8;
+  box-shadow: 0 0 10px #F3C1F8;
   border-radius: 5px;
 }
 
-.header__link:active,
-.nav-page__link:active,
-.about-me__link:active,
-.portfolio__link:active,
-.footer__link:active,
-.auth-form__link:active,
 .auth-form__input:active,
-.auth-form__button:active,
-.auth-form__link:active,
 .search__input:active,
-.search__button:active,
-.search__label-switch:active,
-.movies__button-save:active,
-.movies__button:active,
-.profile__button:active,
-.profile__input:active,
-.header__burger:active,
-.header__burger-exit:active,
-.movies__link:active,
-.popup__exit-button:active {
+.profile__input:active {
   outline: 2px solid #d67621;
   box-shadow: 0 0 10px #d67621;
   transition: .25s ease-in-out;
