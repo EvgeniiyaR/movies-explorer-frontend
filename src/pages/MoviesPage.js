@@ -6,7 +6,9 @@ function MoviesPage({ isLoggedIn }) {
   return (
     <>
       <Header isLoggedIn={isLoggedIn} />
-      <Movies />
+      <main>
+        <Movies />
+      </main>
       <Footer />
     </>
   );

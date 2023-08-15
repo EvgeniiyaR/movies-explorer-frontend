@@ -5,7 +5,9 @@ function ProfilePage({ isLoggedIn, setIsLoggedIn }) {
   return (
     <>
       <Header isLoggedIn={isLoggedIn} />
-      <Profile setIsLoggedIn={setIsLoggedIn} />
+      <main>
+        <Profile setIsLoggedIn={setIsLoggedIn} />
+      </main>
     </>
   );
 }

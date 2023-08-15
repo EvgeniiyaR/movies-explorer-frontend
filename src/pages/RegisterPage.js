@@ -2,9 +2,9 @@ import Register from '../components/Register/Register';
 
 function RegisterPage() {
   return (
-    <>
+    <main>
       <Register />
-    </>
+    </main>
   );
 }
 

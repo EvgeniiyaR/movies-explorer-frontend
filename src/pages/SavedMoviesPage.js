@@ -6,7 +6,9 @@ function SavedMoviesPage({ isLoggedIn }) {
   return (
     <>
       <Header isLoggedIn={isLoggedIn} />
-      <SavedMovies />
+      <main>
+        <SavedMovies />
+      </main>
       <Footer />
     </>
   );
