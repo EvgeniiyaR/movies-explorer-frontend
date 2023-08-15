@@ -1,0 +1,31 @@
+.page {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  font-family: "Inter", Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* focus, active styles */
+
+.auth-form__input:focus,
+.search__input:focus,
+.profile__input:focus {
+  outline: 2px solid #F3C1F8;
+  box-shadow: 0 0 10px #F3C1F8;
+  border-radius: 5px;
+}
+
+.auth-form__input:active,
+.search__input:active,
+.profile__input:active {
+  outline: 2px solid #d67621;
+  box-shadow: 0 0 10px #d67621;
+  transition: .25s ease-in-out;
+  border-radius: 5px;
+}
