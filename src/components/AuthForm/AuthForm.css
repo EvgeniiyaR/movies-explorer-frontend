@@ -63,11 +63,21 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding-top: 56px;
+  padding-top: 26px;
 }
 
 .auth-form__container_type_login {
-  padding-top: 154px;
+  padding-top: 124px;
+}
+
+.auth-form__error {
+  margin: 0;
+  color: #FF004C;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+  height: 14px;
 }
 
 .auth-form__button {
@@ -87,6 +97,11 @@
 .auth-form__button:hover {
   opacity: .8;
   cursor: pointer;
+}
+
+.auth-form__button:disabled {
+  background-color: #F8F8F8;
+  color: #C2C2C2;
 }
 
 .auth-form__text {
@@ -144,15 +159,15 @@
     padding-top: calc(100vh - 654px - 127px);
   }
 
-  .auth-form__button {
-    margin-top: 127px;
+  .auth-form__error {
+    margin-top: 97px;
   }
 
   .auth-form__container_type_login {
     padding-top: calc(100vh - 556px - 225px);
   }
 
-  .auth-form__button_type_login {
-    margin-top: 225px;
+  .auth-form__error_type_login {
+    margin-top: 195px;
   }
 }
