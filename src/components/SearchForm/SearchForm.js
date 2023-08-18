@@ -4,13 +4,13 @@ import Form from '../Form/Form';
 import Button from '../Button/Button';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
-const SearchForm = () => {
+const SearchForm = ({ name }) => {
   const handleSubmitSearch = () => {}
   const handleChangeSearch = () => {}
 
   return (
     <section className="search" aria-label="поиск фильмов">
-      <Form className="search__form" name="search-form" onSubmit={handleSubmitSearch}>
+      <Form className="search__form" name={name} onSubmit={handleSubmitSearch}>
         <div className="search__form-container">
           <div className="search__form-container-input">
             <div className="search__icon-search"></div>
