@@ -1,12 +1,42 @@
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import { BASE_URL_MOVIES_API } from "../../utils/constants";
 import './MoviesCard.css';
 import Button from '../Button/Button';
 
-const MoviesCard = ({ image, title, time, isSave }) => {
+const MoviesCard = ({ movie, movieId, isSave, handleCreateMovie }) => {
   const location = useLocation();
   const handleClick = () => {
-    console.log(1);
+    handleCreateMovie(
+      movie.country,
+      movie.director,
+      movie.duration,
+      movie.year,
+      movie.description,
+      `${BASE_URL_MOVIES_API}${movie.image.url}`,
+      movie.trailerLink,
+      `${BASE_URL_MOVIES_API}${movie.image.formats.thumbnail.url}`,
+      movie.nameRU,
+      movie.nameEN,
+      movie.id);
+      console.log(movie.country,
+        movie.director,
+        movie.duration,
+        movie.year,
+        movie.description,
+        `${BASE_URL_MOVIES_API}${movie.image.url}`,
+        movie.trailerLink,
+        `${BASE_URL_MOVIES_API}${movie.image.formats.thumbnail.url}`,
+        movie.nameRU,
+        movie.nameEN,
+        movieId);
+  };
+
+  const countTime = (duration) => {
+    const hour = Math.trunc(duration / 60);
+    const minutes = duration - 60 * hour;
+    const res = `${hour}ч ${minutes}м`;
+    return res;
   };
 
   return (
@@ -16,8 +46,8 @@ const MoviesCard = ({ image, title, time, isSave }) => {
       :
       "movies__card movies__card_type_saved"
       }>
-      <Link className="movies__link" to="https://www.youtube.com/watch?v=bHQqvYy5KYo" target="_blank" rel="noreferrer">
-        <img className="movies__img" src={image} alt={title}></img>
+      <Link className="movies__link" to={movie.trailerLink} target="_blank" rel="noreferrer">
+        <img className="movies__img" src={`${BASE_URL_MOVIES_API}${movie.image.url}`} alt={movie.nameRU}></img>
       </Link>
       <Button
         className={
@@ -28,11 +58,11 @@ const MoviesCard = ({ image, title, time, isSave }) => {
         }
         type="button"
         text={!isSave && "Сохранить"}
-        onClick={handleClick} />
+        onClick={!isSave && handleClick} />
       <div className="movies__container-title">
-        <h2 className="movies__title">{title}</h2>
+        <h2 className="movies__title">{movie.nameRU}</h2>
         <div className="movies__container-time">
-          <p className="movies__time">{time}</p>
+          <p className="movies__time">{countTime(movie.duration)}</p>
         </div>
       </div>
     </li>
