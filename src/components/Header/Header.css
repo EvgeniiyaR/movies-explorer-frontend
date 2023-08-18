@@ -87,8 +87,13 @@
   background-position: center;
   width: 30px;
   height: 30px;
-  background-color: rgba(249, 249, 249, 1);
+  background-color: #F9F9F9;
   border-radius: 6px;
+}
+
+.header__icon-profile_type_main {
+  background-image: url(../../images/icon-profile-main.svg);
+  background-color: #000;
 }
 
 .header__nav-mobile {

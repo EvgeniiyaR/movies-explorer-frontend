@@ -26,6 +26,11 @@
   width: 100%;
   object-fit: cover;
   object-position: center;
+  transition: transform .3s;
+}
+
+.movies__link:hover > .movies__img {
+  transform: scale(1.02);
 }
 
 .movies__button-save {

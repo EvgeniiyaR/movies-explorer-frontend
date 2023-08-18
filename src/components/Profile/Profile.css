@@ -49,6 +49,10 @@
   color: #000;
 }
 
+.profile__input_type_error {
+  color: #FF004C;
+}
+
 .profile__label {
   width: 410px;
   display: flex;
@@ -86,6 +90,23 @@
   line-height: normal;
   text-align: center;
   height: 14px;
+}
+
+.profile__input-error {
+  font-size: 10px;
+  font-weight: 400;
+  line-height: normal;
+  color: #FF4062;
+  height: 10px;
+  text-align: right;
+}
+
+.profile__input-error_type_name {
+  padding-bottom: 5px;
+}
+
+.profile__input-error_type_email {
+  padding-top: 5px;
 }
 
 .profile__button {
@@ -155,11 +176,11 @@
   }
 
   .profile__form {
-    gap: calc(100vh - 407px - 374px);
+    gap: calc(100vh - 407px - 374px - 40px);
   }
 
   .profile__form_type_save {
-    gap: calc(100vh - 436px);
+    gap: calc(100vh - 776px);
   }
 
   .profile__label {
@@ -168,6 +189,10 @@
 
   .profile__container-btns {
     padding: 374px 0 40px;
+  }
+
+  .profile__container-btns_type_save {
+    padding: 340px 0 40px;
   }
 
   .profile__button {
