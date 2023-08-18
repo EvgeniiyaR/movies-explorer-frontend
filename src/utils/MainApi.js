@@ -1,12 +1,11 @@
-import { HEADERS } from "./MainApi";
-export const BASE_URL = 'https://api.movies.evgeniiyar.nomoreparties.sbs';
+import { HEADERS, BASE_URL } from './constants';
 
 const checkResponse = (res) => {
   if (res.ok) {
     return res.json();
   }
-  return Promise.reject(`Ошибка: ${res.status}`);
-}
+  return Promise.reject(res.status);
+};
 
 export const register = (name, email, password) => {
   return fetch(`${BASE_URL}/signup`, {
@@ -15,16 +14,16 @@ export const register = (name, email, password) => {
     headers: HEADERS,
     body: JSON.stringify({ name, email, password }),
   }).then((res) => checkResponse(res));
-}
+};
 
-export const authorize = (email, password) => {
+export const login = (email, password) => {
   return fetch(`${BASE_URL}/signin`, {
     method: 'POST',
     credentials: 'include',
     headers: HEADERS,
     body: JSON.stringify({ email, password }),
   }).then((res) => checkResponse(res));
-}
+};
 
 export const getUserInfo = () => {
   return fetch(`${BASE_URL}/users/me`, {
@@ -32,7 +31,7 @@ export const getUserInfo = () => {
     credentials: 'include',
     headers: HEADERS,
   }).then((res) => checkResponse(res));
-}
+};
 
 export const deleteCookies = () => {
   return fetch(`${BASE_URL}/signout`, {
@@ -40,38 +39,38 @@ export const deleteCookies = () => {
     credentials: 'include',
     headers: HEADERS,
   }).then((res) => checkResponse(res));
-}
+};
 
 export const editUserInfo = (name, email) => {
-  return fetch(`${this._url}/users/me`, {
+  return fetch(`${BASE_URL}/users/me`, {
     method: 'PATCH',
     credentials: 'include',
     headers: HEADERS,
     body: JSON.stringify({ name, email }),
-  }).then((res) => this._checkResponse(res));
-}
+  }).then((res) => checkResponse(res));
+};
 
 export const getMovies = () => {
-  return fetch(`${this._url}/movies`, {
+  return fetch(`${BASE_URL}/movies`, {
     method: 'GET',
     credentials: 'include',
     headers: HEADERS,
   }).then((res) => checkResponse(res));
-}
+};
 
 export const deleteMovie = (id) => {
-  return fetch(`${this._url}/movies/${id}`, {
+  return fetch(`${BASE_URL}/movies/${id}`, {
     method: 'DELETE',
     credentials: 'include',
     headers: HEADERS,
   }).then((res) => checkResponse(res));
-}
+};
 
 export const createMovie = (country, director, duration, year, description, image, trailerLink, thumbnail, nameRU, nameEN, movieId) => {
-  return fetch(`${this._url}/movies`, {
+  return fetch(`${BASE_URL}/movies`, {
     method: 'POST',
     credentials: 'include',
     headers: HEADERS,
     body: JSON.stringify({ country, director, duration, year, description, image, trailerLink, thumbnail, nameRU, nameEN, movieId }),
   }).then((res) => checkResponse(res));
-}
+};
