@@ -1,13 +1,13 @@
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
-const Main = () => {
+const Movies = ({ movies, handleCreateMovie }) => {
   return (
-    <>
-      <SearchForm />
-      <MoviesCardList />
-    </>
+    <main>
+      <SearchForm name="search-form-movies" />
+      <MoviesCardList movies={movies} handleCreateMovie={handleCreateMovie} />
+    </main>
   )
 }
 
-export default Main;
+export default Movies;
