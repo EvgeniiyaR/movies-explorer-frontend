@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import Button from '../Button/Button';
 
 const Navigation = () => {
   const [isOpenBurger, setIsOpenBurger] = useState(false);
+  const location = useLocation();
 
   const setActive = ({ isActive }) => isActive ? "header__link header__link_type_auth header__link_active" : "header__link header__link_type_auth";
   const setProfile = ({ isActive }) => isActive ? "header__link header__link_type_auth header__link_type_profile header__link_active" : "header__link header__link_type_auth header__link_type_profile";
@@ -39,7 +40,7 @@ const Navigation = () => {
           <li><NavLink className={setActive} to="/saved-movies">Сохраненные фильмы</NavLink></li>
           <li className="header__container-link">
             <NavLink className={setActive} to="/profile">Аккаунт</NavLink>
-            <div className="header__icon-profile"></div>
+            <div className={`header__icon-profile ${location.pathname === "/" ? "header__icon-profile_type_main" : ""}`}></div>
           </li>
         </ul>
       </nav>
