@@ -1,10 +1,8 @@
 import Register from '../components/Register/Register';
 
-function RegisterPage() {
+const RegisterPage = ({ handleRegister, status, setStatus, isLoading }) => {
   return (
-    <main>
-      <Register />
-    </main>
+    <Register handleRegister={handleRegister} status={status} setStatus={setStatus} isLoading={isLoading} />
   );
 }
 

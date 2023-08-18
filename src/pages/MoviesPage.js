@@ -2,13 +2,11 @@ import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 import Movies from '../components/Movies/Movies';
 
-function MoviesPage({ isLoggedIn }) {
+const MoviesPage = ({ isLoggedIn, movies, handleCreateMovie }) => {
   return (
     <>
       <Header isLoggedIn={isLoggedIn} />
-      <main>
-        <Movies />
-      </main>
+      <Movies movies={movies} handleCreateMovie={handleCreateMovie} />
       <Footer />
     </>
   );
