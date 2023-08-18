@@ -9,7 +9,6 @@ const Input = ({ type, name, placeholder, children, classNameLabel, classNameInp
         type={type}
         name={name}
         placeholder={placeholder}
-        defaultValue={defaultValue}
         value={value}
         required={required}
         minLength={minLength}
