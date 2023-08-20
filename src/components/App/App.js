@@ -25,7 +25,9 @@ const App = () => {
   const [status, setStatus] = useState('');
   const [currentUser, setCurrentUser] = useState({});
   const [movies, setMovies] = useState([]);
+  const [filteredMovies, setFilteredMovies] = useState(JSON.parse(localStorage.getItem('filteredMovies')) || []);
   const [savedMovies, setSavedMovies] = useState([]);
+  const [filteredSavedMovies, setFilteredSavedMovies] = useState(JSON.parse(localStorage.getItem('savedFilteredMovies')) || savedMovies);
 
   const checkUser = () => {
     mainApi.getUserInfo()
@@ -45,8 +47,12 @@ const App = () => {
     if (isLoggedIn) {
       Promise.all([moviesApi.getAllMovies(), mainApi.getMovies()])
       .then(([movies, savedMovies]) => {
-        setMovies([...movies]);
-        setSavedMovies([...savedMovies]);
+        setMovies(movies);
+        setSavedMovies(savedMovies);
+        if (!localStorage.getItem('savedFilteredMovies')) {
+          localStorage.setItem('savedFilteredMovies', JSON.stringify(savedMovies));
+          setFilteredSavedMovies(savedMovies);
+        };
       })
       .catch((err) => console.log(`Возникла ошибка: ${err}`));
     }
@@ -124,7 +130,23 @@ const App = () => {
       if (res) {
         setIsLoggedIn(false);
         navigate('/signin');
+        localStorage.clear();
       }
+    })
+    .catch((err) => console.log(`Возникла ошибка: ${err}`));
+  };
+
+  const handleGetSavedMovies = () => {
+    mainApi.getMovies()
+    .then((res) => {
+      setSavedMovies(res);
+      const movieIdsFromMovies = movies.map((item) => item.id);
+
+      const filteredData = res
+        .filter((item) => movieIdsFromMovies.includes(item.movieId));
+
+      setFilteredSavedMovies(filteredData);
+      localStorage.setItem('savedFilteredMovies', JSON.stringify(filteredData));
     })
     .catch((err) => console.log(`Возникла ошибка: ${err}`));
   };
@@ -142,11 +164,19 @@ const App = () => {
       nameRU,
       nameEN,
       movieId)
-    .then((res) => {
-      console.log(res);
+    .then(() => {
+      handleGetSavedMovies();
     })
     .catch((err) => console.log(`Возникла ошибка: ${err}`));
-  }
+  };
+
+  const handleDeleteMovie = (id) => {
+    mainApi.deleteMovie(id)
+    .then(() => {
+      handleGetSavedMovies();
+    })
+    .catch((err) => console.log(`Возникла ошибка: ${err}`));
+  };
 
   const closeStatusPopup = () => {
     setIsStatusPopupOpen(false);
@@ -165,14 +195,21 @@ const App = () => {
                 element={<MoviesPage
                   isLoggedIn={isLoggedIn}
                   movies={movies}
-                  handleCreateMovie={handleCreateMovie} />} />} />
+                  filteredMovies={filteredMovies}
+                  setFilteredMovies={setFilteredMovies}
+                  savedMovies={savedMovies}
+                  handleCreateMovie={handleCreateMovie}
+                  handleDeleteMovie={handleDeleteMovie} />} />} />
             <Route
               path="/saved-movies"
               element={<ProtectedRouteElementForUnauthorizedUser
                 isLoggedIn={isLoggedIn}
                 element={<SavedMoviesPage
                   isLoggedIn={isLoggedIn}
-                  savedMovies={savedMovies} />} />} />
+                  filteredSavedMovies={filteredSavedMovies}
+                  savedMovies={savedMovies}
+                  setFilteredSavedMovies={setFilteredSavedMovies}
+                  handleDeleteMovie={handleDeleteMovie} />} />} />
             <Route
               path="/profile"
               element={<ProtectedRouteElementForUnauthorizedUser
@@ -212,6 +249,6 @@ const App = () => {
       </div>
     </CurrentUserContext.Provider>
   );
-}
+};
 
 export default App;
