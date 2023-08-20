@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import AuthForm from '../AuthForm/AuthForm';
 import Input from '../Input/Input';
-import { useFormWithValidation } from '../../hooks/useFormWithValidation';
+import useFormWithValidation from '../../hooks/useFormWithValidation';
 
 const Login = ({ handleLogin, status, setStatus, isLoading }) => {
   const initialValues = {
@@ -77,6 +77,6 @@ const Login = ({ handleLogin, status, setStatus, isLoading }) => {
       </AuthForm>
     </main>
   )
-}
+};
 
 export default Login;

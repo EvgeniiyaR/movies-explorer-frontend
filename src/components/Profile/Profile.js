@@ -1,6 +1,6 @@
 import { useEffect, useContext } from 'react';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
-import { useFormWithValidation } from '../../hooks/useFormWithValidation';
+import useFormWithValidation from '../../hooks/useFormWithValidation';
 import './Profile.css';
 import Form from '../Form/Form';
 import Input from '../Input/Input';
@@ -117,6 +117,6 @@ const Profile = ({ handleSignOut, status, setStatus, isLoading, handleUpdateUser
       </section>
     </main>
   )
-}
+};
 
 export default Profile;
