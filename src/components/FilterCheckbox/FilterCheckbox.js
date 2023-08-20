@@ -1,17 +1,17 @@
 import './FilterCheckbox.css';
 import Input from '../Input/Input';
 
-const FilterCheckbox = () => {
-  const handleChange = () => {};
+const FilterCheckbox = ({ isChecked, setCheckbox, name }) => {
 
   return (
     <Input
       classNameLabel="search__label-switch"
       classNameInput="search__input-checkbox"
       type="checkbox"
-      name="search-checkbox"
+      name={name}
       tabIndex="0"
-      onChange={handleChange}>
+      checked={isChecked}
+      onChange={(e) => setCheckbox(e.target.checked)}>
       <span className="search__slider"></span>
     </Input>
   )
