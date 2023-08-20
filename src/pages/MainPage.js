@@ -10,6 +10,6 @@ const MainPage = ({ isLoggedIn }) => {
       <Footer />
     </>
   );
-}
+};
 
 export default MainPage;

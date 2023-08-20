@@ -25,6 +25,6 @@ const ProfilePage = (
         setIsEdit={setIsEdit} />
     </>
   );
-}
+};
 
 export default ProfilePage;
