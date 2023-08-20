@@ -1,6 +1,6 @@
 .search {
   box-sizing: border-box;
-  padding: 70px 0;
+  padding: 70px 0 46px;
   width: 1140px;
   margin: 0 auto;
   border-bottom: 1px solid #E8E8E8;
@@ -80,10 +80,20 @@
   line-height: 1.4;
 }
 
+.search__error {
+  margin: 0;
+  padding-top: 10px;
+  color: #FF4062;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: normal;
+  height: 14px;
+}
+
 @media screen and (max-width: 1279px) {
   .search {
     width: 708px;
-    padding: 70px 0 108px;
+    padding: 70px 0 84px;
   }
 
   .search__form-container {
@@ -102,7 +112,7 @@
 @media screen and (max-width: 767px) {
   .search {
     width: calc(300px + (708 - 300) * (100vw - 320px) / (767 - 320));
-    padding: 75px 0 44px;
+    padding: 75px 0 20px;
   }
 
   .search__form-container {
@@ -152,5 +162,9 @@
   .search__checkbox-title {
     font-size: 11px;
     line-height: 1.6;
+  }
+
+  .search__error {
+    text-align: center;
   }
 }
