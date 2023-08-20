@@ -2,34 +2,62 @@ import { useLocation } from 'react-router-dom';
 import './MoviesCardList.css';
 import Button from '../Button/Button';
 import MoviesCard from '../MoviesCard/MoviesCard';
-import coverTwo from '../../images/2-cover.jpg';
-import coverSix from '../../images/6-cover.jpg';
-import coverTen from '../../images/10-cover.jpg';
+import NoResultSearch from '../NoResultSearch/NoResultSearch';
 
-const MoviesCardList = ({ movies, savedMovies, handleCreateMovie }) => {
+const MoviesCardList = ({
+  filteredMovies,
+  savedMovies,
+  filteredSavedMovies,
+  handleCreateMovie,
+  handleDeleteMovie,
+}) => {
   const location = useLocation();
+  const savedMoviesID = savedMovies.map((item) => item.movieId);
+  const findIdDb = (id) => {
+    const foundItem = savedMovies.find((item) => item.movieId === id);
+    return foundItem ? foundItem._id : null;
+  };
 
   return (
     <>
       {location.pathname === "/movies" &&
-      <section className="movies" aria-label="фильмы">
-        <ul className="movies__list">
-        {movies.map(({id, ...props}) => (
-          <MoviesCard movie={props} movieId={id} key={id} isSave={false} handleCreateMovie={handleCreateMovie} />
-        ))}
-        </ul>
-        <Button className="movies__button" type="button" text="Ещё" />
-      </section>
+        (filteredMovies.length >= 1 ?
+        <section className="movies" aria-label="фильмы">
+          <ul className="movies__list">
+          {filteredMovies.map(({id, ...props}) => (
+            <MoviesCard
+              movie={props}
+              isSaveMovie={savedMoviesID.includes(id)}
+              movieIdDb={findIdDb(id)}
+              movieId={id}
+              key={id}
+              handleCreateMovie={handleCreateMovie}
+              handleDeleteMovie={handleDeleteMovie} />
+          ))}
+          </ul>
+          <Button className="movies__button" type="button" text="Ещё" />
+        </section>
+        :
+        <NoResultSearch />)
       }
 
       {location.pathname === "/saved-movies" &&
+        (filteredSavedMovies.length >= 1 ?
         <section className="movies" aria-label="сохраненные фильмы">
           <ul className="movies__list">
-            <MoviesCard image={coverTwo} title="Киноальманах «100 лет дизайна»" time="1ч 17м" isSave={true} />
-            <MoviesCard image={coverSix} title="Книготорговцы" time="1ч 17м" isSave={true} />
-            <MoviesCard image={coverTen} title="Соберись перед прыжком" time="1ч 17м" isSave={true} />
+            {filteredSavedMovies.map(({movieId, _id, ...props}) => (
+            <MoviesCard
+              movie={props}
+              isSaveMovie={savedMoviesID.includes(movieId)}
+              movieIdDb={_id}
+              movieId={movieId}
+              key={movieId}
+              handleDeleteMovie={handleDeleteMovie} />
+            ))}
           </ul>
         </section>
+        :
+        <NoResultSearch />)
       }
     </>
   )
