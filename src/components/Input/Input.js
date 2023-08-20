@@ -1,4 +1,20 @@
-const Input = ({ type, name, placeholder, children, classNameLabel, classNameInput, label, value, defaultValue, required, minLength, maxLength, disabled, tabIndex, onChange }) => {
+const Input = ({
+  type,
+  name,
+  placeholder,
+  children,
+  classNameLabel,
+  classNameInput,
+  label,
+  value,
+  required,
+  minLength,
+  maxLength,
+  disabled,
+  tabIndex,
+  onChange,
+  checked
+}) => {
   return (
     <label
       className={classNameLabel}
@@ -14,7 +30,8 @@ const Input = ({ type, name, placeholder, children, classNameLabel, classNameInp
         minLength={minLength}
         maxLength={maxLength}
         disabled={disabled}
-        onChange={onChange} />
+        onChange={onChange}
+        checked={checked} />
       {children}
     </label>
   )
