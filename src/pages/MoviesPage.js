@@ -10,6 +10,10 @@ const MoviesPage = ({
   savedMovies,
   handleDeleteMovie,
   setFilteredMovies,
+  isSearchMovies,
+  setIsSearchMovies,
+  isLoading,
+  isLoadingMovies,
 }) => {
   return (
     <>
@@ -20,7 +24,11 @@ const MoviesPage = ({
         setFilteredMovies={setFilteredMovies}
         handleCreateMovie={handleCreateMovie}
         savedMovies={savedMovies}
-        handleDeleteMovie={handleDeleteMovie} />
+        handleDeleteMovie={handleDeleteMovie}
+        isSearchMovies={isSearchMovies}
+        setIsSearchMovies={setIsSearchMovies}
+        isLoading={isLoading}
+        isLoadingMovies={isLoadingMovies} />
       <Footer />
     </>
   );

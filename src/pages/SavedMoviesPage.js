@@ -8,6 +8,11 @@ const SavedMoviesPage = ({
   setFilteredSavedMovies,
   handleDeleteMovie,
   filteredSavedMovies,
+  isSearchSavedMovies,
+  setIsSearchSavedMovies,
+  isLoadingSavedMovies,
+  setIsLoadingSavedMovies,
+  isLoadingMovies,
 }) => {
   return (
     <>
@@ -16,7 +21,12 @@ const SavedMoviesPage = ({
         savedMovies={savedMovies}
         filteredSavedMovies={filteredSavedMovies}
         setFilteredSavedMovies={setFilteredSavedMovies}
-        handleDeleteMovie={handleDeleteMovie} />
+        handleDeleteMovie={handleDeleteMovie}
+        isSearchSavedMovies={isSearchSavedMovies}
+        setIsSearchSavedMovies={setIsSearchSavedMovies}
+        isLoadingSavedMovies={isLoadingSavedMovies}
+        setIsLoadingSavedMovies={setIsLoadingSavedMovies}
+        isLoadingMovies={isLoadingMovies} />
       <Footer />
     </>
   );
