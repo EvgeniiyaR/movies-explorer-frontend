@@ -14,9 +14,17 @@
   visibility: visible;
 }
 
+.movies__card:hover > .movies__button-save_type_choose:hover {
+  opacity: .8;
+}
+
 .movies__card:hover > .movies__button-save_type_delete {
   opacity: 1;
   visibility: visible;
+}
+
+.movies__card:hover > .movies__button-save_type_delete:hover {
+  opacity: .8;
 }
 
 .movies__img {
@@ -64,13 +72,14 @@
   background-size: 21px 21px;
   background-repeat: no-repeat;
   background-color: transparent;
+  transition: opacity .3s;
 }
 
 .movies__button-save_type_choose {
   width: 72px;
   height: 21px;
   border-radius: 30px;
-  background-color: #F9F9F9;
+  background-color: var(--teritary-bg-color);
 }
 
 .movies__button-save_type_delete {
@@ -103,13 +112,13 @@
   width: 52px;
   height: 18px;
   border-radius: 3px;
-  background-color: #F9F9F9;
+  background-color: var(--teritary-bg-color);
   padding: 3px 4px;
 }
 
 .movies__time {
   margin: 0;
-  color: #A0A0A0;
+  color: var(--teritary-color);
   font-size: 11px;
   font-weight: 400;
   line-height: 1.1;
@@ -119,10 +128,6 @@
 @media screen and (max-width: 1279px) {
   .movies__card {
     gap: 25px;
-  }
-
-  .movies__card_type_unsaved:nth-last-child(-n + 4) {
-    display: none;
   }
 
   .movies__img {
@@ -146,14 +151,6 @@
 
   .movies__card {
     gap: 15px;
-  }
-
-  .movies__card_type_unsaved:nth-last-child(-n + 7) {
-    display: none;
-  }
-
-  .movies__card_type_saved:last-child {
-    display: none;
   }
 
   .movies__button-save_type_choose,

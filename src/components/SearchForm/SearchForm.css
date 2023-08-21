@@ -3,7 +3,7 @@
   padding: 70px 0 46px;
   width: 1140px;
   margin: 0 auto;
-  border-bottom: 1px solid #E8E8E8;
+  border-bottom: 1px solid var(--border-line);
 }
 
 .search__form-container {
@@ -11,10 +11,14 @@
   display: flex;
   align-items: center;
   box-shadow: 0px 3px 14px 0px rgba(0, 0, 0, 0.08);
-  background-color: #FDFDFD;
+  background-color: var(--search-form-bg-color);
   border-radius: 9px;
   gap: 10px;
   padding: 16px 0 16px 16px;
+}
+
+.search__form-container_focus {
+  background-color: var(--accent-bg-color);
 }
 
 .search__form-container-input {
@@ -36,10 +40,15 @@
 .search__input {
   border: none;
   width: 747px;
+  background-color: transparent;
+}
+
+.search__input:focus {
+  outline: none;
 }
 
 .search__input::placeholder {
-  color: #A0A0A0;
+  color: var(--teritary-color);
   font-size: 18px;
   font-weight: 400;
   line-height: 1.1;
@@ -48,12 +57,12 @@
 .search__button {
   box-sizing: border-box;
   border: none;
-  color: #FFF;
+  color: var(--secondary-color);
   font-size: 11px;
   font-weight: 500;
   line-height: 1.63;
   border-radius: 48px;
-  background: #000;
+  background: var(--primary-bg-color);
   padding: 8px 10.35px;
   transition: opacity .3s;
   margin: 0 12px 0 21.35px;
@@ -69,7 +78,7 @@
   display: flex;
   gap: 14px;
   padding: 11px 31px;
-  border-left: 1px solid #CBCBCB;
+  border-left: 1px solid var(--border-search-line);
   align-items: center;
 }
 
@@ -83,7 +92,7 @@
 .search__error {
   margin: 0;
   padding-top: 10px;
-  color: #FF4062;
+  color: var(--attention-color);
   font-size: 11px;
   font-weight: 400;
   line-height: normal;
@@ -128,13 +137,21 @@
     gap: 46px;
   }
 
+  .search__form-container_focus {
+    background-color: transparent;
+  }
+
   .search__form-container-input {
     box-shadow: 0px 3px 14px 0px rgba(0, 0, 0, 0.08);
-    background-color: #FDFDFD;
+    background-color: var(--search-form-bg-color);
     border-radius: 9px;
     padding: 19px;
     width: 100%;
     justify-content: space-between;
+  }
+
+  .search__form-container-input_focus {
+    background-color: var(--accent-bg-color);
   }
 
   .search__checkbox-filter {
@@ -147,7 +164,7 @@
   }
 
   .search__input {
-    width: calc(122px + (334 - 122) * (100vw - 320px) / (767 - 320));
+    width: calc(177px + (550 - 177) * (100vw - 320px) / (767 - 320));
   }
 
   .search__input::placeholder {

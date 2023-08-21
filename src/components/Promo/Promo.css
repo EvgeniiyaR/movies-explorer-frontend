@@ -1,6 +1,6 @@
 .promo {
   min-height: 524px;
-  background: url(../../images/landing-logo.png) #F3C1F8;
+  background: url(../../images/landing-logo.png) var(--accent-bg-color);
   background-repeat: no-repeat;
   background-size: 320px 320px;
   background-position: center;

@@ -1,3 +1,37 @@
+:root {
+  --primary-bg-color: #000;
+  --primary-color: #000;
+
+  --secondary-bg-color: #fff;
+  --secondary-color: #fff;
+
+  --teritary-bg-color: #F9F9F9;
+  --teritary-color: #A0A0A0;
+
+  --attention-color: #FF4062;
+  --attention-extra-color: #FF004C;
+
+  --disabled-bg-color: #F8F8F8;
+  --disabled-color: #C2C2C2;
+
+  --accent-bg-color: #F3C1F8;
+
+  --techs-bg-color: #F5F5F5;
+  --techs-item-bg-color: #E8E8E8;
+
+  --search-form-bg-color: #FDFDFD;
+
+  --about-progress-bg-color: #F2F2F2;
+
+  --filter-checkbox-bg-color: #2BE080;
+  --filter-checkbox-bg-inactive-color: #343434;
+  --filter-checkbox-inactive-color: #A0A0A0;
+
+  --border-line: #E8E8E8;
+
+  --border-search-line: #CBCBCB;
+}
+
 .page {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -9,23 +43,4 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-}
-
-/* focus, active styles */
-
-.auth-form__input:focus,
-.search__input:focus,
-.profile__input:focus {
-  outline: 2px solid #F3C1F8;
-  box-shadow: 0 0 10px #F3C1F8;
-  border-radius: 5px;
-}
-
-.auth-form__input:active,
-.search__input:active,
-.profile__input:active {
-  outline: 2px solid #d67621;
-  box-shadow: 0 0 10px #d67621;
-  transition: .25s ease-in-out;
-  border-radius: 5px;
 }
