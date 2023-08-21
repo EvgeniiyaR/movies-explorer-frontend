@@ -1,8 +1,7 @@
 import Header from '../components/Header/Header';
 import Profile from '../components/Profile/Profile';
 
-const ProfilePage = (
-  {
+const ProfilePage = ({
     isLoggedIn,
     handleSignOut,
     status,
@@ -10,7 +9,7 @@ const ProfilePage = (
     isLoading,
     handleUpdateUser,
     isEdit,
-    setIsEdit
+    setIsEdit,
   }) =>  {
   return (
     <>
