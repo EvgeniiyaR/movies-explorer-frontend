@@ -5,9 +5,3 @@ export const ProtectedRouteElementForUnauthorizedUser = ({ isLoggedIn, element }
     isLoggedIn ? element : <Navigate to="/" replace />
   )
 }
-
-export const ProtectedRouteElementForAuthorizedUser = ({ isLoggedIn, element }) => {
-  return (
-    !isLoggedIn ? element : <Navigate to="/movies" replace />
-  )
-}
