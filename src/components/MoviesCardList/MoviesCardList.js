@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import './MoviesCardList.css';
 import Button from '../Button/Button';
 import MoviesCard from '../MoviesCard/MoviesCard';
-import NoResultSearch from '../NoResultSearch/NoResultSearch';
+import ResultSearch from '../ResultSearch/ResultSearch';
 import Preloader from '../Preloader/Preloader';
 
 const MoviesCardList = ({
@@ -74,11 +74,11 @@ const MoviesCardList = ({
             (isLoading ?
               <Preloader/>
               :
-              <NoResultSearch isError={false} />
+              <ResultSearch isError={false} />
             )
           )
         :
-        <NoResultSearch isError={true} />)
+        <ResultSearch isError={true} />)
       }
 
       {location.pathname === "/saved-movies" &&
@@ -106,11 +106,11 @@ const MoviesCardList = ({
             (isLoadingSavedMovies ?
               <Preloader/>
               :
-              <NoResultSearch isError={false} />
+              <ResultSearch isError={false} />
             )
           )
         :
-        <NoResultSearch isError={true} />)
+        <ResultSearch isError={true} />)
       }
 
     </>
