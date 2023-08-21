@@ -13,7 +13,9 @@ const Input = ({
   disabled,
   tabIndex,
   onChange,
-  checked
+  checked,
+  onFocus,
+  onBlur,
 }) => {
   return (
     <label
@@ -31,7 +33,9 @@ const Input = ({
         maxLength={maxLength}
         disabled={disabled}
         onChange={onChange}
-        checked={checked} />
+        checked={checked}
+        onFocus={onFocus}
+        onBlur={onBlur} />
       {children}
     </label>
   )
