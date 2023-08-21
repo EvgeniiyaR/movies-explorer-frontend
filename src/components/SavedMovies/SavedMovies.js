@@ -1,23 +1,73 @@
+import { useState } from 'react';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import {validateSearch, handleCheckboxChange} from '../../utils/filterData';
 
 const SavedMovies = ({
   savedMovies,
   setFilteredSavedMovies,
   handleDeleteMovie,
   filteredSavedMovies,
+  isSearchSavedMovies,
+  setIsSearchSavedMovies,
+  isLoadingSavedMovies,
+  setIsLoadingSavedMovies,
+  isLoadingMovies,
 }) => {
+  const [searchQuerySavedMovies, setSearchQuerySavedMovies] = useState(localStorage.getItem('searchQuerySavedMovies') || '');
+  const [isCheckedSavedMovies, setIsCheckedSavedMovies] = useState(localStorage.getItem('isShortFilmSavedMovies') === 'true');
+  const [nameError, setNameError] = useState('');
+  const isSaveInLocalStorage = false;
+
+  const handleSubmitSearchSavedMovies = (e) => {
+    e.preventDefault();
+    setNameError('');
+    setIsSearchSavedMovies(true);
+    setIsLoadingSavedMovies(true);
+    validateSearch(
+      isSaveInLocalStorage,
+      searchQuerySavedMovies,
+      'searchQuerySavedMovies',
+      setNameError,
+      setFilteredSavedMovies,
+      savedMovies,
+      isCheckedSavedMovies,
+      'savedFilteredMovies',
+      savedMovies);
+  };
+
+  const handleCheckboxChangeSavedMovies = (isChecked) => {
+    setIsLoadingSavedMovies(true);
+    handleCheckboxChange(
+      isSaveInLocalStorage,
+      'searchQuerySavedMovies',
+      isChecked,
+      setIsCheckedSavedMovies,
+      'isShortFilmSavedMovies',
+      savedMovies,
+      searchQuerySavedMovies,
+      setFilteredSavedMovies,
+      'savedFilteredMovies');
+  };
+
   return (
     <main>
       <SearchForm
         name="search-form-saved-movies"
-        setFilteredSavedMovies={setFilteredSavedMovies}
-        savedMovies={savedMovies}
-        filteredSavedMovies={filteredSavedMovies} />
+        handleSubmitSearchFilteredMovies={handleSubmitSearchSavedMovies}
+        handleCheckboxChangeFilteredMovies={handleCheckboxChangeSavedMovies}
+        nameError={nameError}
+        setSearchQueryFilteredMovies={setSearchQuerySavedMovies}
+        searchQueryFilteredMovies={searchQuerySavedMovies}
+        isCheckedFilteredMovies={isCheckedSavedMovies} />
       <MoviesCardList
         filteredSavedMovies={filteredSavedMovies}
         savedMovies={savedMovies}
-        handleDeleteMovie={handleDeleteMovie} />
+        handleDeleteMovie={handleDeleteMovie}
+        isSearchSavedMovies={isSearchSavedMovies}
+        isLoadingSavedMovies={isLoadingSavedMovies}
+        setIsLoadingSavedMovies={setIsLoadingSavedMovies}
+        isLoadingMovies={isLoadingMovies} />
     </main>
   )
 };
