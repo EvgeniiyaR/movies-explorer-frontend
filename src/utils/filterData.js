@@ -4,23 +4,30 @@ const filterData = (nameRu, nameEN, duration, isChecked, searchQuery) => {
     && (isChecked ? duration <= 40 : duration);
 };
 
-export const validateSearch = (searchQuery, searchQueryName, setNameError, setMovies, movies, isChecked, moviesName, errorMovies) => {
-  localStorage.setItem(searchQueryName, searchQuery);
+export const validateSearch = (isSaveInLocalStorage, searchQuery, searchQueryName, setNameError, setMovies, movies, isChecked, moviesName, errorMovies) => {
+  isSaveInLocalStorage && localStorage.setItem(searchQueryName, searchQuery);
   if (searchQuery.trim() === '') {
     setNameError('Нужно ввести ключевое слово');
     setMovies(errorMovies);
-    localStorage.setItem(moviesName, JSON.stringify(errorMovies));
+    isSaveInLocalStorage && localStorage.setItem(moviesName, JSON.stringify(errorMovies));
   } else {
     const filteredData = movies.filter((item) => filterData(item.nameRU, item.nameEN, item.duration, isChecked, searchQuery));
     setMovies(filteredData);
-    localStorage.setItem(moviesName, JSON.stringify(filteredData));
+    isSaveInLocalStorage && localStorage.setItem(moviesName, JSON.stringify(filteredData));
   };
 };
 
-export const handleCheckboxChange = (isChecked, setIsChecked, isShortFilm, movies, searchQuery, setMovies, moviesName) => {
+export const handleCheckboxChange = (isSaveInLocalStorage, searchQueryName, isChecked, setIsChecked, isShortFilm, movies, searchQuery, setMovies, moviesName) => {
   setIsChecked(isChecked);
-  localStorage.setItem(isShortFilm, String(isChecked));
-  const filteredData = movies.filter((item) => filterData(item.nameRU, item.nameEN, item.duration, isChecked, searchQuery));
-  setMovies(filteredData);
-  localStorage.setItem(moviesName, JSON.stringify(filteredData));
+  isSaveInLocalStorage && localStorage.setItem(isShortFilm, String(isChecked));
+  isSaveInLocalStorage && localStorage.setItem(searchQueryName, searchQuery);
+
+  if (isSaveInLocalStorage && (localStorage.getItem(searchQueryName) !== '')) {
+    const filteredData = movies.filter((item) => filterData(item.nameRU, item.nameEN, item.duration, isChecked, searchQuery));
+    setMovies(filteredData);
+    localStorage.setItem(moviesName, JSON.stringify(filteredData));
+  } else if (!isSaveInLocalStorage) {
+    const filteredData = movies.filter((item) => filterData(item.nameRU, item.nameEN, item.duration, isChecked, searchQuery));
+    setMovies(filteredData);
+  };
 };
