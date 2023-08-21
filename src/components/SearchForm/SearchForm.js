@@ -4,71 +4,24 @@ import Input from '../Input/Input';
 import Form from '../Form/Form';
 import Button from '../Button/Button';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
-import {validateSearch, handleCheckboxChange} from '../../utils/filterData';
 
 const SearchForm = ({
   name,
-  movies,
-  setFilteredMovies,
-  savedMovies,
-  filteredSavedMovies,
-  setFilteredSavedMovies,
+  handleSubmitSearchFilteredMovies,
+  handleCheckboxChangeFilteredMovies,
+  nameError,
+  setSearchQueryFilteredMovies,
+  searchQueryFilteredMovies,
+  isCheckedFilteredMovies,
 }) => {
-  const [searchQueryFilteredMovies, setSearchQueryFilteredMovies] = useState(localStorage.getItem('searchQueryFilteredMovies') || '');
-  const [searchQuerySavedMovies, setSearchQuerySavedMovies] = useState(localStorage.getItem('searchQuerySavedMovies') || '');
+  const [isFocused, setIsFocused] = useState(false);
 
-  const [isCheckedFilteredMovies, setIsCheckedFilteredMovies] = useState(localStorage.getItem('isShortFilmFilteredMovies') === 'true');
-  const [isCheckedSavedMovies, setIsCheckedSavedMovies] = useState(localStorage.getItem('isShortFilmSavedMovies') === 'true');
-
-  const [nameError, setNameError] = useState('');
-
-  const handleSubmitSearchFilteredMovies = (e) => {
-    e.preventDefault();
-    setNameError('');
-    validateSearch(
-      searchQueryFilteredMovies,
-      'searchQueryFilteredMovies',
-      setNameError,
-      setFilteredMovies,
-      movies,
-      isCheckedFilteredMovies,
-      'filteredMovies', []);
+  const handleFocus = () => {
+    setIsFocused(true);
   };
 
-  const handleSubmitSearchSavedMovies = (e) => {
-    e.preventDefault();
-    setNameError('');
-    validateSearch(
-      searchQuerySavedMovies,
-      'searchQuerySavedMovies',
-      setNameError,
-      setFilteredSavedMovies,
-      filteredSavedMovies,
-      isCheckedSavedMovies,
-      'savedFilteredMovies',
-      savedMovies);
-  };
-
-  const handleCheckboxChangeFilteredMovies = (isChecked) => {
-    handleCheckboxChange(
-      isChecked,
-      setIsCheckedFilteredMovies,
-      'isShortFilmFilteredMovies',
-      movies,
-      searchQueryFilteredMovies,
-      setFilteredMovies,
-      'filteredMovies');
-  };
-
-  const handleCheckboxChangeSavedMovies = (isChecked) => {
-    handleCheckboxChange(
-      isChecked,
-      setIsCheckedSavedMovies,
-      'isShortFilmSavedMovies',
-      savedMovies,
-      searchQuerySavedMovies,
-      setFilteredSavedMovies,
-      'savedFilteredMovies');
+  const handleBlur = () => {
+    setIsFocused(false);
   };
 
   return (
@@ -76,9 +29,9 @@ const SearchForm = ({
       <Form
         className="search__form"
         name={name}
-        onSubmit={movies ? (e) => handleSubmitSearchFilteredMovies(e) : (e) => handleSubmitSearchSavedMovies(e)}>
-        <div className="search__form-container">
-          <div className="search__form-container-input">
+        onSubmit={(e) => handleSubmitSearchFilteredMovies(e)}>
+        <div className={`search__form-container ${isFocused ? "search__form-container_focus" : ""}`}>
+          <div className={`search__form-container-input ${isFocused ? "search__form-container-input_focus" : ""}`}>
             <div className="search__icon-search"></div>
             <Input
               classNameLabel="search__label"
@@ -87,15 +40,17 @@ const SearchForm = ({
               name="search-input"
               placeholder="Фильм"
               required="required"
-              value={movies ? searchQueryFilteredMovies : searchQuerySavedMovies}
-              onChange={movies ? (e) => setSearchQueryFilteredMovies(e.target.value) : (e) => setSearchQuerySavedMovies(e.target.value)} />
+              value={searchQueryFilteredMovies}
+              onChange={(e) => setSearchQueryFilteredMovies(e.target.value)}
+              onFocus={handleFocus}
+              onBlur={handleBlur} />
             <Button className="search__button" type="submit" text="Найти" />
           </div>
           <div className="search__checkbox-filter">
             <FilterCheckbox
               name={`${name}-checkbox`}
-              isChecked={movies ? isCheckedFilteredMovies : isCheckedSavedMovies}
-              setCheckbox={movies ? handleCheckboxChangeFilteredMovies : handleCheckboxChangeSavedMovies} />
+              isChecked={isCheckedFilteredMovies}
+              setCheckbox={handleCheckboxChangeFilteredMovies} />
             <p className="search__checkbox-title">Короткометражки</p>
           </div>
         </div>
