@@ -155,6 +155,7 @@ const App = () => {
         setIsLoggedIn(false);
         navigate('/');
         localStorage.clear();
+        setFilteredMovies([]);
       }
     })
     .catch((err) => console.log(`Возникла ошибка: ${err}`));
