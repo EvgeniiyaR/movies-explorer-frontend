@@ -104,7 +104,6 @@ const App = () => {
     setIsStatus(true);
     mainApi.register(name, email, password)
     .then(() => {
-      setIsLoggedIn(true);
       handleLogin(email, password);
       navigate('/movies');
       setIsLoading(false);
