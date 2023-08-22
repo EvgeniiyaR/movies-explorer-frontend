@@ -45,7 +45,7 @@
   justify-content: center;
   width: 100%;
   min-height: calc(100vh - 653px);
-  z-index: 10;
+  z-index: 2;
   padding: 100px 0;
 }
 
@@ -82,7 +82,7 @@
 }
 
 .preloader__round::before {
-  z-index: 10;
+  z-index: 2;
   background: var(--accent-bg-color);
   animation: preloader-inside-red 1s ease-in-out infinite;
 }
