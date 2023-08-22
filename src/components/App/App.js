@@ -156,6 +156,7 @@ const App = () => {
         navigate('/');
         localStorage.clear();
         setFilteredMovies([]);
+        setIsSearchMovies(false);
       }
     })
     .catch((err) => console.log(`Возникла ошибка: ${err}`));
