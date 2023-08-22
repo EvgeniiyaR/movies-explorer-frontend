@@ -23,7 +23,9 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingSavedMovies, setIsLoadingSavedMovies] = useState(false);
   const [isStatusPopupOpen, setIsStatusPopupOpen] = useState(false);
+  const [isStatus, setIsStatus] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
+  const [textPopup, setTextPopup] = useState('');
   const [status, setStatus] = useState('');
   const [currentUser, setCurrentUser] = useState({});
   const [movies, setMovies] = useState([]);
@@ -68,14 +70,24 @@ const App = () => {
     checkUser();
   }, [isLoggedIn]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setIsStatusPopupOpen(false);
+    }, 2000);
+  }, [isStatusPopupOpen]);
+
   const handleRegister = (name, email, password) => {
     setIsLoading(true);
+    setIsStatus(true);
     mainApi.register(name, email, password)
     .then(() => {
       setIsLoggedIn(true);
       handleLogin(email, password);
       navigate('/movies');
       setIsLoading(false);
+      setIsStatusPopupOpen(true);
+      setIsStatus(true);
+      setTextPopup('Регистрация прошла успешно. Добро пожаловать!');
     })
     .catch((err) => {
       setIsLoading(false);
@@ -97,6 +109,9 @@ const App = () => {
       setIsLoggedIn(true);
       navigate('/movies');
       setIsLoading(false);
+      setIsStatusPopupOpen(true);
+      setIsStatus(true);
+      setTextPopup('Успешный вход в аккаунт. Добро пожаловать!');
     }).catch((err) => {
       setIsLoading(false);
       console.log(`Возникла ошибка: ${err}`);
@@ -117,6 +132,9 @@ const App = () => {
       setCurrentUser(userInfo);
       setIsLoading(false);
       setIsEdit(false);
+      setIsStatusPopupOpen(true);
+      setIsStatus(true);
+      setTextPopup('Данные успешно сохранены!');
     }).catch((err) => {
       setIsLoading(false);
       console.log(`Возникла ошибка: ${err}`);
@@ -295,7 +313,11 @@ const App = () => {
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </div>
-        <InfoTooltip isOpen={isStatusPopupOpen} onClose={closeStatusPopup} isStatus={false} status="Вы ввели неправильный логин или пароль." />
+        <InfoTooltip
+          isOpen={isStatusPopupOpen}
+          onClose={closeStatusPopup}
+          isStatus={isStatus}
+          status={textPopup} />
       </div>
     </CurrentUserContext.Provider>
   );
