@@ -50,6 +50,10 @@ const App = () => {
   };
 
   useEffect(() => {
+    checkUser();
+  }, [isLoggedIn]);
+
+  useEffect(() => {
     setIsLoadingMovies(true);
     if (isLoggedIn) {
       Promise.all([moviesApi.getAllMovies(), mainApi.getMovies()])
@@ -67,14 +71,33 @@ const App = () => {
   }, [isLoggedIn]);
 
   useEffect(() => {
-    checkUser();
-  }, [isLoggedIn]);
-
-  useEffect(() => {
     setTimeout(() => {
       setIsStatusPopupOpen(false);
     }, 2000);
   }, [isStatusPopupOpen]);
+
+  const handleLogin = (email, password) => {
+    setIsLoading(true);
+    mainApi.login(email, password)
+    .then(() => {
+      setIsLoggedIn(true);
+      navigate('/movies');
+      setIsLoading(false);
+      setIsStatusPopupOpen(true);
+      setIsStatus(true);
+      setTextPopup('Успешный вход в аккаунт. Добро пожаловать!');
+    }).catch((err) => {
+      setIsLoading(false);
+      console.log(`Возникла ошибка: ${err}`);
+      if (err === UNAUTHORIZED) {
+        setStatus(UNAUTHORIZED_TEXT);
+      } else if (err === SERVER_ERROR) {
+        setStatus(SERVER_ERROR_TEXT);
+      } else {
+        setStatus('При авторизации произошла ошибка.');
+      }
+    });
+  };
 
   const handleRegister = (name, email, password) => {
     setIsLoading(true);
@@ -98,29 +121,6 @@ const App = () => {
         setStatus(SERVER_ERROR_TEXT);
       } else {
         setStatus('При регистрации пользователя произошла ошибка.');
-      }
-    });
-  };
-
-  const handleLogin = (email, password) => {
-    setIsLoading(true);
-    mainApi.login(email, password)
-    .then(() => {
-      setIsLoggedIn(true);
-      navigate('/movies');
-      setIsLoading(false);
-      setIsStatusPopupOpen(true);
-      setIsStatus(true);
-      setTextPopup('Успешный вход в аккаунт. Добро пожаловать!');
-    }).catch((err) => {
-      setIsLoading(false);
-      console.log(`Возникла ошибка: ${err}`);
-      if (err === UNAUTHORIZED) {
-        setStatus(UNAUTHORIZED_TEXT);
-      } else if (err === SERVER_ERROR) {
-        setStatus(SERVER_ERROR_TEXT);
-      } else {
-        setStatus('При авторизации произошла ошибка.');
       }
     });
   };
