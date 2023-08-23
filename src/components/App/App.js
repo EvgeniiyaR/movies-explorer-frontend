@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import './App.css';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 import MainPage from '../../pages/MainPage';
@@ -17,8 +17,9 @@ import { ProtectedRouteElementForUnauthorizedUser } from '../ProtectedRoutes/Pro
 
 const App = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(JSON.parse(localStorage.getItem('isLoggedIn')) || false);
   const [isLoadingMovies, setIsLoadingMovies] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingSavedMovies, setIsLoadingSavedMovies] = useState(false);
@@ -40,7 +41,7 @@ const App = () => {
     .then((res) => {
       if (res) {
         setIsLoggedIn(true);
-        navigate('/movies');
+        localStorage.setItem('isLoggedIn', JSON.stringify(true));
         setCurrentUser(res);
       } else {
         setIsLoggedIn(false);
@@ -48,10 +49,6 @@ const App = () => {
     })
     .catch((err) => console.log(`Возникла ошибка: ${err}`));
   };
-
-  useEffect(() => {
-    checkUser();
-  }, [isLoggedIn]);
 
   useEffect(() => {
     setIsLoadingMovies(true);
@@ -71,6 +68,10 @@ const App = () => {
   }, [isLoggedIn]);
 
   useEffect(() => {
+    checkUser();
+  }, [isLoggedIn]);
+
+  useEffect(() => {
     setTimeout(() => {
       setIsStatusPopupOpen(false);
     }, 2000);
@@ -81,6 +82,7 @@ const App = () => {
     mainApi.login(email, password)
     .then(() => {
       setIsLoggedIn(true);
+      localStorage.setItem('isLoggedIn', JSON.stringify(true));
       navigate('/movies');
       setIsLoading(false);
       setIsStatusPopupOpen(true);
@@ -105,7 +107,6 @@ const App = () => {
     mainApi.register(name, email, password)
     .then(() => {
       handleLogin(email, password);
-      navigate('/movies');
       setIsLoading(false);
       setIsStatusPopupOpen(true);
       setIsStatus(true);
@@ -161,40 +162,6 @@ const App = () => {
     .catch((err) => console.log(`Возникла ошибка: ${err}`));
   };
 
-  const handleGetSavedMoviesForDelete = () => {
-    setIsLoadingMovies(true);
-    mainApi.getMovies()
-    .then((res) => {
-      setSavedMovies(res);
-      const movieIdsFromMovies = res.map((item) => item.movieId);
-      const filteredData = filteredSavedMovies
-        .filter((item) => movieIdsFromMovies.includes(item.movieId));
-      setFilteredSavedMovies(filteredData);
-      setIsLoadingMovies(true);
-    })
-    .catch((err) => {
-      setIsLoadingMovies(false);
-      console.log(`Возникла ошибка: ${err}`);
-    });
-  };
-
-  const handleGetSavedMoviesForCreate = () => {
-    setIsLoadingMovies(true);
-    mainApi.getMovies()
-    .then((res) => {
-      setSavedMovies(res);
-      const movieIdsFromMovies = movies.map((item) => item.id);
-      const filteredData = res
-        .filter((item) => movieIdsFromMovies.includes(item.movieId));
-      setFilteredSavedMovies(filteredData);
-      setIsLoadingMovies(true);
-    })
-    .catch((err) => {
-      setIsLoadingMovies(false);
-      console.log(`Возникла ошибка: ${err}`);
-    });
-  };
-
   const handleCreateMovie = (
     country,
     director,
@@ -206,7 +173,8 @@ const App = () => {
     thumbnail,
     nameRU,
     nameEN,
-    movieId) => {
+    movieId,
+    setIsSave) => {
     setIsLoadingMovies(true);
     mainApi.createMovie(
       country,
@@ -220,9 +188,11 @@ const App = () => {
       nameRU,
       nameEN,
       movieId)
-    .then(() => {
+    .then((newSavedMovie) => {
       setIsLoadingMovies(true);
-      handleGetSavedMoviesForCreate();
+      setIsSave(true);
+      setSavedMovies((prevState) => [...prevState, newSavedMovie]);
+      setFilteredSavedMovies((prevState) => [...prevState, newSavedMovie]);
     })
     .catch((err) => {
       setIsLoadingMovies(false);
@@ -230,12 +200,14 @@ const App = () => {
     });
   };
 
-  const handleDeleteMovie = (id) => {
+  const handleDeleteMovie = (id, setIsSave) => {
     setIsLoadingMovies(true);
     mainApi.deleteMovie(id)
     .then(() => {
       setIsLoadingMovies(true);
-      handleGetSavedMoviesForDelete();
+      setIsSave(false);
+      setSavedMovies((prevState) => prevState.filter((item) => item._id !== id));
+      setFilteredSavedMovies((prevState) => prevState.filter((item) => item._id !== id));
     })
     .catch((err) => {
       setIsLoadingMovies(false);
@@ -299,18 +271,26 @@ const App = () => {
                   setIsEdit={setIsEdit} />} />} />
             <Route
               path="/signup"
-                element={<RegisterPage
-                handleRegister={handleRegister}
-                status={status}
-                setStatus={setStatus}
-                isLoading={isLoading} />} />
+                element={
+                  isLoggedIn && location.pathname === '/signup' ?
+                  navigate('/movies')
+                  :
+                  <RegisterPage
+                  handleRegister={handleRegister}
+                  status={status}
+                  setStatus={setStatus}
+                  isLoading={isLoading} />} />
             <Route
               path="/signin"
-                element={<LoginPage
-                handleLogin={handleLogin}
-                status={status}
-                setStatus={setStatus}
-                isLoading={isLoading} />} />
+                element={
+                  isLoggedIn && location.pathname === '/signin' ?
+                  navigate('/movies')
+                  :
+                  <LoginPage
+                  handleLogin={handleLogin}
+                  status={status}
+                  setStatus={setStatus}
+                  isLoading={isLoading} />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </div>
