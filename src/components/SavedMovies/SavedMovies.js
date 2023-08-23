@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import {validateSearch, handleCheckboxChange} from '../../utils/filterData';
@@ -14,6 +15,7 @@ const SavedMovies = ({
   setIsLoadingSavedMovies,
   isLoadingMovies,
 }) => {
+  const location = useLocation();
   const [searchQuerySavedMovies, setSearchQuerySavedMovies] = useState(localStorage.getItem('searchQuerySavedMovies') || '');
   const [isCheckedSavedMovies, setIsCheckedSavedMovies] = useState(localStorage.getItem('isShortFilmSavedMovies') === 'true');
   const [nameError, setNameError] = useState('');
@@ -49,6 +51,11 @@ const SavedMovies = ({
       setFilteredSavedMovies,
       'savedFilteredMovies');
   };
+
+  useEffect(() => {
+    setFilteredSavedMovies(savedMovies);
+    setIsSearchSavedMovies(false);
+  }, [location.pathname]);
 
   return (
     <main>
