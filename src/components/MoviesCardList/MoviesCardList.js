@@ -40,6 +40,7 @@ const MoviesCardList = ({
   }, [filteredSavedMovies, isLoadingSavedMovies, setIsLoadingSavedMovies]);
 
   const savedMoviesIds = savedMovies.map((item) => item.movieId);
+
   const findIdDb = (id) => {
     const foundItem = savedMovies.find((item) => item.movieId === id);
     return foundItem ? foundItem._id : null;
@@ -55,7 +56,7 @@ const MoviesCardList = ({
             :
             <section className="movies" aria-label="фильмы">
               <ul className="movies__list">
-              {filteredMovies.slice(0, visibleCardsCount).map(({id, ...props}, index) => (
+              {filteredMovies.slice(0, visibleCardsCount).map(({id, ...props}) => (
                 <MoviesCard
                   movie={props}
                   isSaveMovie={savedMoviesIds.includes(id)}
@@ -63,8 +64,7 @@ const MoviesCardList = ({
                   movieId={id}
                   key={id}
                   handleCreateMovie={handleCreateMovie}
-                  handleDeleteMovie={handleDeleteMovie}
-                  index={index} />
+                  handleDeleteMovie={handleDeleteMovie} />
               ))}
               </ul>
               {filteredMovies.length > visibleCardsCount && <Button className="movies__button" type="button" text="Ещё" onClick={handleShowCards}/>}
@@ -89,15 +89,14 @@ const MoviesCardList = ({
             :
             <section className="movies" aria-label="сохраненные фильмы">
               <ul className="movies__list">
-                {filteredSavedMovies.map(({movieId, _id, ...props}, index) => (
+                {filteredSavedMovies.map(({movieId, _id, ...props}) => (
                 <MoviesCard
                   movie={props}
                   isSaveMovie={savedMoviesIds.includes(movieId)}
                   movieIdDb={_id}
                   movieId={movieId}
                   key={movieId}
-                  handleDeleteMovie={handleDeleteMovie}
-                  index={index} />
+                  handleDeleteMovie={handleDeleteMovie} />
                 ))}
               </ul>
             </section>
