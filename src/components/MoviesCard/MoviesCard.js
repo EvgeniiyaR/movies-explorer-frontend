@@ -27,13 +27,12 @@ const MoviesCard = ({
       `${BASE_URL_MOVIES_API}${movie.image.formats.thumbnail.url}`,
       movie.nameRU,
       movie.nameEN,
-      movieId);
-    setIsSave(true);
+      movieId,
+      setIsSave);
   };
 
   const handleClickDelete = () => {
-    handleDeleteMovie(movieIdDb);
-    setIsSave(false);
+    handleDeleteMovie(movieIdDb, setIsSave);
   };
 
   const countTime = (duration) => {
@@ -73,6 +72,6 @@ const MoviesCard = ({
       </div>
     </li>
   )
-}
+};
 
 export default MoviesCard;
