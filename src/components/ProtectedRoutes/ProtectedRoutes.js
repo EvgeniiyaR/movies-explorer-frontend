@@ -4,4 +4,4 @@ export const ProtectedRouteElementForUnauthorizedUser = ({ isLoggedIn, element }
   return (
     isLoggedIn ? element : <Navigate to="/" replace />
   )
-}
+};
