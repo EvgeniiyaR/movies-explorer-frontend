@@ -44,9 +44,9 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100%;
-  z-index: 10;
-  padding: 20px;
+  min-height: calc(100vh - 653px);
+  z-index: 2;
+  padding: 100px 0;
 }
 
 .preloader__container {
@@ -61,7 +61,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  background: #000;
+  background: var(--accent-bg-color);
   border-radius: 50px;
 }
 
@@ -77,12 +77,24 @@
 }
 
 .preloader__round::after {
-  background: white;
+  background: var(--secondary-bg-color);
   animation: preloader-inside-white 1s ease-in-out infinite;
 }
 
 .preloader__round::before {
-  z-index: 10;
-  background: #000;
+  z-index: 2;
+  background: var(--accent-bg-color);
   animation: preloader-inside-red 1s ease-in-out infinite;
+}
+
+@media screen and (max-width: 1279px) {
+  .preloader {
+    min-height: calc(100vh - 700px);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .preloader {
+    min-height: calc(100vh - 782px);
+  }
 }

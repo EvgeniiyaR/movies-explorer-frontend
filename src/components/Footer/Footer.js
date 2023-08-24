@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className="footer">
       <p className="footer__title">Учебный проект Яндекс.Практикум х BeatFilm.</p>
       <ul className="footer__list">
-        <li className="footer__year">© 2020</li>
+        <li className="footer__year">© {new Date().getFullYear()}</li>
         <li>
           <ul className="footer__link-list">
             <li><Link className="footer__link" to="https://practicum.yandex.ru/" target="_blank" rel="noreferrer">Яндекс.Практикум</Link></li>

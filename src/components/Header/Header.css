@@ -1,5 +1,5 @@
 .header_type_main {
-  background-color: #F3C1F8;
+  background-color: var(--accent-bg-color);
 }
 
 .header__container {
@@ -37,7 +37,7 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 1.3;
-  color: #000;
+  color: var(--primary-color);
   transition: opacity .3s;
 }
 
@@ -56,8 +56,8 @@
 
 .header__link_type_login {
   padding: 8px 20px;
-  background-color: #000;
-  color: #FFF;
+  background-color: var(--primary-bg-color);
+  color: var(--secondary-color);
   border-radius: 3px;
   transition: opacity .3s;
 }
@@ -87,8 +87,13 @@
   background-position: center;
   width: 30px;
   height: 30px;
-  background-color: rgba(249, 249, 249, 1);
+  background-color: var(--teritary-bg-color);
   border-radius: 6px;
+}
+
+.header__icon-profile_type_main {
+  background-image: url(../../images/icon-profile-main.svg);
+  background-color: var(--primary-bg-color);
 }
 
 .header__nav-mobile {
@@ -130,7 +135,7 @@
 }
 
 .header__container-mobile {
-  background-color: #fff;
+  background-color: var(--secondary-bg-color);
   display: flex;
   flex-direction: column;
   width: 520px;
@@ -191,7 +196,7 @@
   }
 
   .header__link_active {
-    border-bottom: 2px solid #000;
+    border-bottom: 2px solid var(--primary-color);
     padding-bottom: 5px;
   }
 }

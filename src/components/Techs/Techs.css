@@ -1,5 +1,5 @@
 .techs {
-  background-color: #F5F5F5;
+  background-color: var(--techs-bg-color);
 }
 
 .techs__container {
@@ -52,7 +52,7 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 1.2;
-  background-color: #E8E8E8;
+  background-color: var(--techs-item-bg-color);
   text-align: center;
   border-radius: 10px;
 }

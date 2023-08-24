@@ -24,7 +24,7 @@
   align-self: center;
   border: none;
   border-radius: 6px;
-  background: #F9F9F9;
+  background: var(--teritary-bg-color);
   transition: opacity .3s;
   font-size: 12px;
   font-weight: 500;
